@@ -3,218 +3,421 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="LBFM Cams - Live Asian Sex Cams. Watch Danica, Chady, Wena, Jinky, Joyce and hundreds more Little Brown Fucking Machines live now.">
-    <title>LBFM Cams - Little Brown Fucking Machines | Live Asian Sex Cams</title>
+    <meta name="description" content="Live Asian, Pinay, Filipina & Thai Cams Directory">
+    <title>Asian LIVE</title>
     <style>
         :root {
-            --bg: #0f0f0f;
-            --card: #1a1a1a;
-            --text: #e0e0e0;
-            --accent: #c026d3;
-            --accent2: #ec4899;
+            --bg: #190b14;
+            --bg2: #241422;
+            --bg3: #331c2f;
+            --border: #4e253b;
+            --border2: #662e4b;
+            --text: #eefbff;
+            --text-muted: #d5617b;
+            --text-dim: #bf3f5d;
+            --accent: #e52b50;
+            --accent2: #e66e88;
+            --live: #e7829a;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            font-family: 'Inter', system-ui, sans-serif;
             background: var(--bg);
             color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
             line-height: 1.5;
+            font-size: 14px;
         }
-        header {
-            background: #111;
-            border-bottom: 1px solid #333;
-            padding: 1.2rem 0;
+        a { color: #ea5170; text-decoration: none; }
+        a:hover { color: #f7bfcb; }
+
+        #navbar {
+            background: var(--bg2);
+            border-bottom: 1px solid var(--border);
+            padding: 0 20px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
             position: sticky;
             top: 0;
             z-index: 100;
         }
-        .header-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .site-title {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--accent);
+            letter-spacing: -0.4px;
+            text-shadow: 0 0 8px #e52b50;
         }
-        .logo {
-            font-size: 2rem;
-            font-weight: 900;
-            color: white;
-            text-decoration: none;
+        .nav-links { display: flex; gap: 18px; flex: 1; }
+        .nav-links a {
+            color: var(--text-muted);
+            font-size: 0.82rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-        .logo span { color: var(--accent); }
+        .live-count {
+            margin-left: auto;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-family: monospace;
+        }
+        .live-count span { color: var(--live); font-weight: 600; }
 
-        .live-now {
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 16px; }
+
+        #seo-hero {
+            padding: 20px 0 16px;
+            border-bottom: 1px solid var(--border);
+        }
+        #seo-h1 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        #seo-tags {
+            margin-top: 12px;
             display: flex;
-            gap: 12px;
             flex-wrap: wrap;
-            justify-content: center;
-            margin: 25px 0;
+            gap: 6px;
         }
-        .live-btn {
-            background: linear-gradient(90deg, #22c55e, #4ade80);
+        #seo-tags a {
+            background: #2e192a;
+            color: #f5aebd;
+            border: 1px solid var(--border2);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.78rem;
+        }
+        #seo-tags a.active {
+            background: var(--accent);
             color: #000;
-            font-weight: bold;
-            padding: 12px 24px;
-            border-radius: 8px;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-        .live-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px #22c55e;
+            border-color: var(--accent2);
         }
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
+        .controls-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 0;
+            flex-wrap: wrap;
+            border-bottom: 1px solid var(--border);
         }
-        h1 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+        .controls-bar input {
+            background: var(--bg3);
+            border: 1px solid var(--border2);
+            color: var(--text);
+            padding: 7px 12px;
+            border-radius: 4px;
+            width: 280px;
         }
-        .subtitle {
-            text-align: center;
-            color: #bbb;
-            font-size: 1.15rem;
-            margin-bottom: 30px;
+        .refresh-btn, .lbfm-btn {
+            background: var(--bg3);
+            border: 1px solid var(--border2);
+            color: var(--text-muted);
+            padding: 7px 16px;
+            border-radius: 4px;
+            cursor: pointer;
         }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(245px, 1fr));
-            gap: 24px;
+        .lbfm-btn {
+            background: #4a1f3a;
+            color: #ff99cc;
+            font-weight: 600;
         }
-        .card {
-            background: var(--card);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            border: 1px solid #333;
+        .refresh-btn:hover, .lbfm-btn:hover { 
+            color: var(--accent); 
+            border-color: var(--accent); 
         }
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent);
-            box-shadow: 0 20px 40px rgba(192, 38, 211, 0.25);
-        }
-        .card img {
+
+        .table-wrap { overflow-x: auto; margin-top: 10px; }
+        #rooms-table {
             width: 100%;
-            height: 300px;
-            object-fit: cover;
+            border-collapse: collapse;
+            font-size: 0.85rem;
         }
-        .card-body {
-            padding: 16px;
+        #rooms-table th {
+            background: var(--bg2);
+            padding: 11px 12px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-size: 0.73rem;
+            letter-spacing: 0.6px;
+            cursor: pointer;
         }
-        .live-badge {
-            background: #22c55e;
-            color: #000;
-            font-size: 0.78rem;
-            font-weight: bold;
-            padding: 3px 10px;
-            border-radius: 20px;
-            display: inline-block;
-            margin-bottom: 10px;
+        #rooms-table th:hover { color: var(--accent); }
+        #rooms-table th.sort-asc::after { content: " ▲"; color: var(--accent); }
+        #rooms-table th.sort-desc::after { content: " ▼"; color: var(--accent); }
+
+        #rooms-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--border);
         }
-        .card h3 {
-            font-size: 1.05rem;
-            margin-bottom: 12px;
-            line-height: 1.3;
+        #rooms-table tr:hover { background: #392035; }
+
+        .avatar {
+            width: 32px; height: 32px; border-radius: 50%; object-fit: cover; margin-right: 8px; vertical-align: middle;
         }
-        .btn {
-            display: block;
-            width: 100%;
-            background: linear-gradient(90deg, var(--accent), var(--accent2));
-            color: white;
-            text-align: center;
-            padding: 13px;
-            border-radius: 8px;
-            text-decoration: none;
+        .badge-live {
+            background: rgba(231,130,154,0.14);
+            color: var(--live);
+            border: 1px solid rgba(231,130,154,0.4);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
             font-weight: 700;
         }
-        .btn:hover {
-            transform: scale(1.03);
-            box-shadow: 0 0 15px rgba(236, 72, 153, 0.6);
+        .viewers-val { color: var(--live); font-weight: 600; }
+
+        #pagination {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 20px 0;
+            flex-wrap: wrap;
+            justify-content: center;
         }
+        #pagination button {
+            background: var(--bg3);
+            border: 1px solid var(--border2);
+            color: var(--text-muted);
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            min-width: 36px;
+        }
+        #pagination button.active {
+            background: var(--accent);
+            color: #000;
+            border-color: var(--accent2);
+        }
+
         footer {
             text-align: center;
-            padding: 60px 20px 40px;
+            padding: 40px 20px;
             color: #666;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border);
+            margin-top: 30px;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="header-content">
-            <a href="#" class="logo">LBFM<span>CAMS</span></a>
-        </div>
-    </header>
+    <div id="navbar">
+        <span class="site-title">● ASIAN LIVE</span>
+        <nav class="nav-links">
+            <a href="#">Home</a>
+            <a href="#directory">Directory</a>
+        </nav>
+        <a href="https://fhg.camdough.com/" target="_blank" class="lbfm-btn">LBFM Original Site</a>
+        <span class="live-count">Online: <span id="total-count">—</span></span>
+    </div>
 
     <div class="container">
-        <h1>Little Brown Fucking Machines</h1>
-        <p class="subtitle">Live Sexy Asian Cam Girls • Direct from the Philippines & Asia</p>
-
-        <!-- Live Now Buttons -->
-        <div class="live-now">
-            <a href="https://www.lbfmcams.com/onnow.php?wid=104247&cid=100&rid=1" target="_blank" class="live-btn">LBFM Cams - Live Now</a>
-            <a href="https://www.bargirlchat.com/onnow.php?wid=104247&cid=100&rid=1" target="_blank" class="live-btn">BarGirlChat - Live Now</a>
-            <a href="https://www.asians247.com/onnow.php?wid=104247&cid=100&rid=1" target="_blank" class="live-btn">Asians247 - Live Now</a>
-            <a href="https://www.asianbabecams.com/onnow.php?wid=104247&cid=100&rid=1" target="_blank" class="live-btn">AsianBabeCams - Live Now</a>
+        <div id="seo-hero">
+            <h1 id="seo-h1">Asian, Pinay &amp; Filipina Live Cams — <span id="seo-count">0</span> Online Now</h1>
+            <div id="seo-tags">
+                <span class="seo-label">Tags:</span>
+                <a href="#" class="active" onclick="filterByTag('pinay')">pinay</a>
+                <a href="#" onclick="filterByTag('filipina')">Filipina</a>
+                <a href="#" onclick="filterByTag('asian')">Asian</a>
+                <a href="#" onclick="filterByTag('thai')">Thai</a>
+            </div>
         </div>
 
-        <div class="grid" id="gallery"></div>
+        <div class="controls-bar">
+            <input type="text" id="search-input" placeholder="Search username, country or tag..." onkeyup="applyFilters()">
+            <button class="refresh-btn" id="refresh-btn" onclick="fetchAllRooms()">↻ Refresh Now</button>
+        </div>
+
+        <div class="table-wrap">
+            <table id="rooms-table">
+                <thead>
+                    <tr>
+                        <th onclick="sortTable(0)">Username</th>
+                        <th onclick="sortTable(1)">Status</th>
+                        <th onclick="sortTable(2)" class="num">Viewers</th>
+                        <th onclick="sortTable(3)">Country</th>
+                        <th onclick="sortTable(4)">Tags</th>
+                        <th onclick="sortTable(5)">Source</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="rooms-body"></tbody>
+            </table>
+        </div>
+
+        <div id="pagination"></div>
     </div>
 
     <footer>
-        <p>All models are 18 years or older. This site contains adult content.</p>
+        <p>All models are 18+. Adult content only. Auto-refresh every 4 minutes.</p>
     </footer>
 
     <script>
-        const fullModels = [
-            { title: "Sexy Danica", url: "https://fhg.camdough.com/x4/lbfmcams/Danica04/index.php?wid=104247&cid=100&rid=1&grid=1&vanity=5784", img: "http://fhg.camdough.com/x4/lbfmcams/Danica04/cd120x160.jpg" },
-            { title: "Sexy Chady", url: "https://fhg.camdough.com/x4/lbfmcams/Chady04/index.php?wid=104247&cid=100&rid=1&grid=1&vanity=5784", img: "http://fhg.camdough.com/x4/lbfmcams/Chady04/cd120x160.jpg" },
-            { title: "Sexy Wena", url: "https://fhg.camdough.com/x4/lbfmcams/Wena02/index.php?wid=104247&cid=100&rid=1&grid=1&vanity=5784", img: "http://fhg.camdough.com/x4/lbfmcams/Wena02/cd120x160.jpg" },
-            { title: "Sexy Jinky", url: "https://fhg.camdough.com/x4/lbfmcams/Jinky02/index.php?wid=104247&cid=100&rid=1&grid=1&vanity=5784", img: "http://fhg.camdough.com/x4/lbfmcams/Jinky02/cd120x160.jpg" },
-            { title: "Sexy Feily", url: "https://fhg.camdough.com/x4/lbfmcams/Feily/index.php?wid=104247&cid=100&rid=1&grid=1&vanity=5784", img: "http://fhg.camdough.com/x4/lbfmcams/Feily/cd120x160.jpg" },
-            { title: "Sexy Zaza", url: "https://fhg.camdough.com/x3/lbfmcams/Zaza04/index.php?wid=104247&cid=100&rid=1&grid=1&vanity=5784", img: "http://fhg.camdough.com/x3/lbfmcams/Zaza04/thumbnails/tnzaza_11.jpg" },
-            { title: "Sexy Joyce", url: "https://fhg.camdough.com/x3/lbfmcams/Joyce04/index.php?wid=104247&cid=100&rid=1&grid=1&vanity=5784", img: "http://fhg.camdough.com/x3/lbfmcams/Joyce04/thumbnails/tnjoyce_08.jpg" },
-            { title: "Sexy Jing", url: "https://fhg.camdough.com/x3/lbfmcams/Jing04/index.php?wid=104247&cid=100&rid=1&grid=1&vanity=5784", img: "http://fhg.camdough.com/x3/lbfmcams/Jing04/thumbnails/tnjing_15.jpg" },
-            { title: "Sexy Jenny", url: "https://fhg.camdough.com/x3/lbfmcams/Jenny04/index.php?wid=104247&cid=100&rid=1&grid=1&vanity=5784", img: "http://fhg.camdough.com/x3/lbfmcams/Jenny04/thumbnails/tnjenny_12.jpg" },
-            { title: "Sexy Jana", url: "https://fhg.camdough.com/x3/lbfmcams/Jana04/index.php?wid=104247&cid=100&rid=1&grid=1&vanity=5784", img: "http://fhg.camdough.com/x3/lbfmcams/Jana04/thumbnails/tnjana_15.jpg" },
-            { title: "Sexy Gang", url: "https://fhg.camdough.com/x3/lbfmcams/Gang04/index.php?wid=104247&cid=100&rid=1&grid=1&vanity=5784", img: "http://fhg.camdough.com/x3/lbfmcams/Gang04/thumbnails/tngang_11.jpg" },
-            { title: "Live Sex with Vic", url: "https://fhg.camdough.com/x2/LBFMCams/Vic04/index.php?wid=104247&cid=100&rid=1&grid=1&vanity=5784", img: "http://fhg.camdough.com/x2/LBFMCams/Vic04/thumbnails/tnvic_08.jpg" },
-            { title: "Live Sex with Jeny", url: "https://fhg.camdough.com/x2/LBFMCams/Jeny04/index.php?wid=104247&cid=100&rid=1&grid=1&vanity=5784", img: "http://fhg.camdough.com/x2/LBFMCams/Jeny04/thumbnails/tnjeny_03.jpg" },
-            { title: "Live Sex with Chinky", url: "https://fhg.camdough.com/x2/LBFMCams/Chinky04/index.php?wid=104247&cid=100&rid=1&grid=1&vanity=5784", img: "http://fhg.camdough.com/x2/LBFMCams/Chinky04/thumbnails/tnchinky_06.jpg" },
-            { title: "Live Sex with April", url: "https://fhg.camdough.com/x2/LBFMCams/April04/index.php?wid=104247&cid=100&rid=1&grid=1&vanity=5784", img: "http://fhg.camdough.com/x2/LBFMCams/April04/thumbnails/tnapril_04.jpg" },
-            { title: "Sexy Princess", url: "https://fhg.camdough.com/x2/LBFMCams/Princess/index.php?wid=104247&cid=100&rid=1&grid=1&vanity=5784", img: "http://fhg.camdough.com/x2/LBFMCams/Princess/thumbnails/tnprincess_0011.jpg" },
-            { title: "Sexy Marissa", url: "https://fhg.camdough.com/x2/LBFMCams/Marissa/index.php?wid=104247&cid=100&rid=1&grid=1&vanity=5784", img: "http://fhg.camdough.com/x2/LBFMCams/Marissa/thumbnails/tnmarissa_0011.jpg" },
-            { title: "Sexy Leah", url: "https://fhg.camdough.com/x2/LBFMCams/Leah/index.php?wid=104247&cid=100&rid=1&grid=1&vanity=5784", img: "http://fhg.camdough.com/x2/LBFMCams/Leah/thumbnails/tnleah_0014.jpg" },
-            { title: "Sexy Beth", url: "https://fhg.camdough.com/x2/LBFMCams/Beth/index.php?wid=104247&cid=100&rid=1&grid=1&vanity=5784", img: "http://fhg.camdough.com/x2/LBFMCams/Beth/thumbnails/tnbeth_12.jpg" },
-            { title: "Sexy Amy", url: "https://fhg.camdough.com/x2/LBFMCams/Amy/index.php?wid=104247&cid=100&rid=1&grid=1&vanity=5784", img: "http://fhg.camdough.com/x2/LBFMCams/Amy/thumbnails/tnamy_0003.jpg" },
-            // ... (All other models from your file are included in the full version. The list is very long.)
-            // For brevity in this response, the full array continues with every entry you provided.
-            // In practice, replace the comment above with the complete list of ~280 entries.
-        ];
+        let allRooms = [];
+        let filteredRooms = [];
+        let currentPage = 1;
+        const perPage = 50;
+        let sortColumn = 2;   // Default: Viewers
+        let sortDirection = -1; // desc
 
-        const gallery = document.getElementById('gallery');
+        const WM = "T2CSW";
 
-        fullModels.forEach(model => {
-            const cardHTML = `
-                <div class="card">
-                    <a href="${model.url}" target="_blank" rel="noopener noreferrer">
-                        <img src="${model.img}" alt="${model.title}" loading="lazy">
-                    </a>
-                    <div class="card-body">
-                        <div class="live-badge">● LIVE</div>
-                        <h3>${model.title}</h3>
-                        <a href="${model.url}" target="_blank" rel="noopener noreferrer" class="btn">Watch Live Now</a>
-                    </div>
-                </div>
-            `;
-            gallery.innerHTML += cardHTML;
-        });
+        async function fetchAllRooms() {
+            const tbody = document.getElementById('rooms-body');
+            tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:60px;color:#d5617b;">Loading live Asian & Pinay rooms...</td></tr>`;
+
+            const sources = [
+                // Chaturbate - prioritized
+                `https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=${WM}&client_ip=request_ip&limit=120&tag=pinay&gender=f`,
+                `https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=${WM}&client_ip=request_ip&limit=80&tag=filipina&gender=f`,
+                `https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=${WM}&client_ip=request_ip&limit=100&tag=asian&gender=f`,
+                `https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=${WM}&client_ip=request_ip&limit=60&tag=thai&gender=f`,
+                // BongaCams as backup
+                `https://bngprm.com/promo.php?c=18144&type=api&api_v=1&limit=30&api_type=json`
+            ];
+
+            let rooms = [];
+
+            for (let url of sources) {
+                try {
+                    const res = await fetch(url);
+                    const data = await res.json();
+
+                    if (data.rooms) {
+                        rooms = rooms.concat(data.rooms.map(r => ({
+                            username: r.username || 'Unknown',
+                            viewers: parseInt(r.num_users) || 0,
+                            country: r.location || 'Asia',
+                            tags: (r.tags || ['Asian']).join(', '),
+                            source: 'Chaturbate',
+                            url: `https://chaturbate.com/${r.username}/?tour=bbrB&campaign=${WM}`
+                        })));
+                    } else if (Array.isArray(data)) {
+                        rooms = rooms.concat(data.map(r => ({
+                            username: r.username || 'Unknown',
+                            viewers: parseInt(r.viewers) || 0,
+                            country: r.homecountry || 'Asia',
+                            tags: 'Asian',
+                            source: 'BongaCams',
+                            url: r.chat_url || `https://bongacams.com/${r.username}`
+                        })));
+                    }
+                } catch(e) {
+                    console.log("Failed to fetch from:", url);
+                }
+            }
+
+            allRooms = rooms;
+            filteredRooms = [...allRooms];
+            currentPage = 1;
+            renderTable();
+        }
+
+        function renderTable() {
+            const tbody = document.getElementById('rooms-body');
+            tbody.innerHTML = '';
+
+            const start = (currentPage - 1) * perPage;
+            const end = start + perPage;
+            const pageData = filteredRooms.slice(start, end);
+
+            if (pageData.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:40px;">No matching rooms found.</td></tr>`;
+                renderPagination();
+                return;
+            }
+
+            pageData.forEach(room => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><strong>${room.username}</strong></td>
+                    <td><span class="badge-live">● LIVE</span></td>
+                    <td class="num"><span class="viewers-val">${room.viewers.toLocaleString()}</span></td>
+                    <td>${room.country}</td>
+                    <td><small>${room.tags}</small></td>
+                    <td>${room.source}</td>
+                    <td><a href="${room.url}" target="_blank">Open Room →</a></td>
+                `;
+                tbody.appendChild(row);
+            });
+
+            document.getElementById('total-count').textContent = allRooms.length;
+            document.getElementById('seo-count').textContent = allRooms.length;
+
+            renderPagination();
+        }
+
+        function renderPagination() {
+            const totalPages = Math.ceil(filteredRooms.length / perPage);
+            const pagination = document.getElementById('pagination');
+            pagination.innerHTML = '';
+
+            for (let i = 1; i <= totalPages; i++) {
+                const btn = document.createElement('button');
+                btn.textContent = i;
+                btn.className = (i === currentPage) ? 'active' : '';
+                btn.onclick = () => { currentPage = i; renderTable(); };
+                pagination.appendChild(btn);
+            }
+        }
+
+        function applyFilters() {
+            const term = document.getElementById('search-input').value.toLowerCase().trim();
+            filteredRooms = allRooms.filter(room => 
+                room.username.toLowerCase().includes(term) ||
+                room.country.toLowerCase().includes(term) ||
+                room.tags.toLowerCase().includes(term)
+            );
+            currentPage = 1;
+            renderTable();
+        }
+
+        function sortTable(colIndex) {
+            if (sortColumn === colIndex) {
+                sortDirection *= -1;
+            } else {
+                sortColumn = colIndex;
+                sortDirection = (colIndex === 2) ? -1 : 1;
+            }
+
+            filteredRooms.sort((a, b) => {
+                let valA, valB;
+                switch(colIndex) {
+                    case 0: valA = a.username; valB = b.username; break;
+                    case 2: valA = a.viewers; valB = b.viewers; break;
+                    case 3: valA = a.country; valB = b.country; break;
+                    case 4: valA = a.tags; valB = b.tags; break;
+                    case 5: valA = a.source; valB = b.source; break;
+                    default: return 0;
+                }
+                if (typeof valA === 'number' && typeof valB === 'number') {
+                    return (valA - valB) * sortDirection;
+                }
+                return String(valA).localeCompare(String(valB)) * sortDirection;
+            });
+
+            renderTable();
+        }
+
+        function filterByTag(tag) {
+            document.querySelectorAll('#seo-tags a').forEach(a => a.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById('search-input').value = tag;
+            applyFilters();
+        }
+
+        // Initialize
+        window.onload = () => {
+            fetchAllRooms();
+            // Auto refresh every 4 minutes
+            setInterval(fetchAllRooms, 4 * 60 * 1000);
+        };
     </script>
 </body>
 </html>
