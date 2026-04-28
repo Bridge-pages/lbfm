@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Live Asian, Pinay, Filipina & Thai Cams Directory">
+    <meta name="description" content="Live Asian, Pinay, Filipina & Thai Cams from Chaturbate and BongaCams">
     <title>Asian LIVE</title>
     <style>
         :root {
@@ -14,17 +14,14 @@
             --border2: #662e4b;
             --text: #eefbff;
             --text-muted: #d5617b;
-            --text-dim: #bf3f5d;
             --accent: #e52b50;
-            --accent2: #e66e88;
             --live: #e7829a;
         }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * { box-sizing: border-box; margin:0; padding:0; }
         body {
             background: var(--bg);
             color: var(--text);
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            font-family: system-ui, sans-serif;
             line-height: 1.5;
             font-size: 14px;
         }
@@ -47,55 +44,20 @@
             font-weight: 700;
             font-size: 1.25rem;
             color: var(--accent);
-            letter-spacing: -0.4px;
             text-shadow: 0 0 8px #e52b50;
         }
-        .nav-links { display: flex; gap: 18px; flex: 1; }
-        .nav-links a {
-            color: var(--text-muted);
-            font-size: 0.82rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .live-count {
+        .lbfm-btn {
+            background: #4a1f3a;
+            color: #ff99cc;
+            padding: 7px 16px;
+            border-radius: 5px;
+            font-weight: 600;
             margin-left: auto;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            font-family: monospace;
         }
-        .live-count span { color: var(--live); font-weight: 600; }
-
         .container { max-width: 1280px; margin: 0 auto; padding: 0 16px; }
 
-        #seo-hero {
-            padding: 20px 0 16px;
-            border-bottom: 1px solid var(--border);
-        }
-        #seo-h1 {
-            font-size: 1.35rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-        #seo-tags {
-            margin-top: 12px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-        }
-        #seo-tags a {
-            background: #2e192a;
-            color: #f5aebd;
-            border: 1px solid var(--border2);
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 0.78rem;
-        }
-        #seo-tags a.active {
-            background: var(--accent);
-            color: #000;
-            border-color: var(--accent2);
-        }
+        #seo-hero { padding: 24px 0 16px; border-bottom: 1px solid var(--border); }
+        #seo-h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 8px; }
 
         .controls-bar {
             display: flex;
@@ -109,27 +71,19 @@
             background: var(--bg3);
             border: 1px solid var(--border2);
             color: var(--text);
-            padding: 7px 12px;
+            padding: 8px 12px;
             border-radius: 4px;
-            width: 280px;
+            width: 300px;
         }
-        .refresh-btn, .lbfm-btn {
+        .refresh-btn {
             background: var(--bg3);
             border: 1px solid var(--border2);
             color: var(--text-muted);
-            padding: 7px 16px;
+            padding: 8px 16px;
             border-radius: 4px;
             cursor: pointer;
         }
-        .lbfm-btn {
-            background: #4a1f3a;
-            color: #ff99cc;
-            font-weight: 600;
-        }
-        .refresh-btn:hover, .lbfm-btn:hover { 
-            color: var(--accent); 
-            border-color: var(--accent); 
-        }
+        .refresh-btn:hover { color: var(--accent); border-color: var(--accent); }
 
         .table-wrap { overflow-x: auto; margin-top: 10px; }
         #rooms-table {
@@ -139,44 +93,40 @@
         }
         #rooms-table th {
             background: var(--bg2);
-            padding: 11px 12px;
+            padding: 12px 12px;
             text-align: left;
             font-weight: 600;
             color: var(--text-muted);
-            text-transform: uppercase;
-            font-size: 0.73rem;
-            letter-spacing: 0.6px;
             cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
         }
         #rooms-table th:hover { color: var(--accent); }
         #rooms-table th.sort-asc::after { content: " ▲"; color: var(--accent); }
         #rooms-table th.sort-desc::after { content: " ▼"; color: var(--accent); }
 
         #rooms-table td {
-            padding: 10px 12px;
+            padding: 11px 12px;
             border-bottom: 1px solid var(--border);
         }
         #rooms-table tr:hover { background: #392035; }
 
-        .avatar {
-            width: 32px; height: 32px; border-radius: 50%; object-fit: cover; margin-right: 8px; vertical-align: middle;
-        }
         .badge-live {
             background: rgba(231,130,154,0.14);
             color: var(--live);
             border: 1px solid rgba(231,130,154,0.4);
-            padding: 2px 8px;
+            padding: 3px 9px;
             border-radius: 4px;
-            font-size: 0.7rem;
+            font-size: 0.72rem;
             font-weight: 700;
         }
         .viewers-val { color: var(--live); font-weight: 600; }
 
         #pagination {
             display: flex;
-            align-items: center;
             gap: 8px;
-            padding: 20px 0;
+            padding: 25px 0;
             flex-wrap: wrap;
             justify-content: center;
         }
@@ -184,10 +134,10 @@
             background: var(--bg3);
             border: 1px solid var(--border2);
             color: var(--text-muted);
-            padding: 6px 12px;
+            padding: 7px 13px;
             border-radius: 4px;
             cursor: pointer;
-            min-width: 36px;
+            min-width: 38px;
         }
         #pagination button.active {
             background: var(--accent);
@@ -197,11 +147,9 @@
 
         footer {
             text-align: center;
-            padding: 40px 20px;
+            padding: 50px 20px 30px;
             color: #666;
-            font-size: 0.8rem;
-            border-top: 1px solid var(--border);
-            margin-top: 30px;
+            font-size: 0.82rem;
         }
     </style>
 </head>
@@ -209,10 +157,6 @@
 
     <div id="navbar">
         <span class="site-title">● ASIAN LIVE</span>
-        <nav class="nav-links">
-            <a href="#">Home</a>
-            <a href="#directory">Directory</a>
-        </nav>
         <a href="https://fhg.camdough.com/" target="_blank" class="lbfm-btn">LBFM Original Site</a>
         <span class="live-count">Online: <span id="total-count">—</span></span>
     </div>
@@ -220,18 +164,11 @@
     <div class="container">
         <div id="seo-hero">
             <h1 id="seo-h1">Asian, Pinay &amp; Filipina Live Cams — <span id="seo-count">0</span> Online Now</h1>
-            <div id="seo-tags">
-                <span class="seo-label">Tags:</span>
-                <a href="#" class="active" onclick="filterByTag('pinay')">pinay</a>
-                <a href="#" onclick="filterByTag('filipina')">Filipina</a>
-                <a href="#" onclick="filterByTag('asian')">Asian</a>
-                <a href="#" onclick="filterByTag('thai')">Thai</a>
-            </div>
         </div>
 
         <div class="controls-bar">
             <input type="text" id="search-input" placeholder="Search username, country or tag..." onkeyup="applyFilters()">
-            <button class="refresh-btn" id="refresh-btn" onclick="fetchAllRooms()">↻ Refresh Now</button>
+            <button class="refresh-btn" onclick="fetchAllRooms()">↻ Refresh</button>
         </div>
 
         <div class="table-wrap">
@@ -255,7 +192,7 @@
     </div>
 
     <footer>
-        <p>All models are 18+. Adult content only. Auto-refresh every 4 minutes.</p>
+        <p>All models are 18+. Shows both Chaturbate and BongaCams. Auto-refreshes every 4 minutes.</p>
     </footer>
 
     <script>
@@ -263,55 +200,57 @@
         let filteredRooms = [];
         let currentPage = 1;
         const perPage = 50;
-        let sortColumn = 2;   // Default: Viewers
-        let sortDirection = -1; // desc
+        let sortColumn = 2;
+        let sortDirection = -1;
 
         const WM = "T2CSW";
 
         async function fetchAllRooms() {
             const tbody = document.getElementById('rooms-body');
-            tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:60px;color:#d5617b;">Loading live Asian & Pinay rooms...</td></tr>`;
-
-            const sources = [
-                // Chaturbate - prioritized
-                `https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=${WM}&client_ip=request_ip&limit=120&tag=pinay&gender=f`,
-                `https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=${WM}&client_ip=request_ip&limit=80&tag=filipina&gender=f`,
-                `https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=${WM}&client_ip=request_ip&limit=100&tag=asian&gender=f`,
-                `https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=${WM}&client_ip=request_ip&limit=60&tag=thai&gender=f`,
-                // BongaCams as backup
-                `https://bngprm.com/promo.php?c=18144&type=api&api_v=1&limit=30&api_type=json`
-            ];
+            tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:60px;color:#d5617b;">Loading cams from Chaturbate & BongaCams...</td></tr>`;
 
             let rooms = [];
 
-            for (let url of sources) {
+            // Chaturbate (prioritized)
+            const cbUrls = [
+                `https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=${WM}&client_ip=request_ip&limit=100&tag=pinay&gender=f`,
+                `https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=${WM}&client_ip=request_ip&limit=80&tag=filipina&gender=f`,
+                `https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=${WM}&client_ip=request_ip&limit=100&tag=asian&gender=f`,
+                `https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=${WM}&client_ip=request_ip&limit=60&tag=thai&gender=f`
+            ];
+
+            for (let url of cbUrls) {
                 try {
                     const res = await fetch(url);
                     const data = await res.json();
-
                     if (data.rooms) {
                         rooms = rooms.concat(data.rooms.map(r => ({
-                            username: r.username || 'Unknown',
+                            username: r.username || "Unknown",
                             viewers: parseInt(r.num_users) || 0,
-                            country: r.location || 'Asia',
-                            tags: (r.tags || ['Asian']).join(', '),
-                            source: 'Chaturbate',
+                            country: r.location || "Asia",
+                            tags: (r.tags || ["Asian"]).join(", "),
+                            source: "Chaturbate",
                             url: `https://chaturbate.com/${r.username}/?tour=bbrB&campaign=${WM}`
                         })));
-                    } else if (Array.isArray(data)) {
-                        rooms = rooms.concat(data.map(r => ({
-                            username: r.username || 'Unknown',
-                            viewers: parseInt(r.viewers) || 0,
-                            country: r.homecountry || 'Asia',
-                            tags: 'Asian',
-                            source: 'BongaCams',
-                            url: r.chat_url || `https://bongacams.com/${r.username}`
-                        })));
                     }
-                } catch(e) {
-                    console.log("Failed to fetch from:", url);
-                }
+                } catch(e) {}
             }
+
+            // BongaCams
+            try {
+                const res = await fetch('https://bngprm.com/promo.php?c=18144&type=api&api_v=1&limit=30&api_type=json');
+                const data = await res.json();
+                if (Array.isArray(data)) {
+                    rooms = rooms.concat(data.map(r => ({
+                        username: r.username || "Unknown",
+                        viewers: parseInt(r.viewers) || 0,
+                        country: r.homecountry || "Asia",
+                        tags: "Asian",
+                        source: "BongaCams",
+                        url: r.chat_url || `https://bongacams.com/${r.username}`
+                    })));
+                }
+            } catch(e) {}
 
             allRooms = rooms;
             filteredRooms = [...allRooms];
@@ -324,8 +263,7 @@
             tbody.innerHTML = '';
 
             const start = (currentPage - 1) * perPage;
-            const end = start + perPage;
-            const pageData = filteredRooms.slice(start, end);
+            const pageData = filteredRooms.slice(start, start + perPage);
 
             if (pageData.length === 0) {
                 tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:40px;">No matching rooms found.</td></tr>`;
@@ -349,7 +287,6 @@
 
             document.getElementById('total-count').textContent = allRooms.length;
             document.getElementById('seo-count').textContent = allRooms.length;
-
             renderPagination();
         }
 
@@ -361,7 +298,7 @@
             for (let i = 1; i <= totalPages; i++) {
                 const btn = document.createElement('button');
                 btn.textContent = i;
-                btn.className = (i === currentPage) ? 'active' : '';
+                btn.className = i === currentPage ? 'active' : '';
                 btn.onclick = () => { currentPage = i; renderTable(); };
                 pagination.appendChild(btn);
             }
@@ -378,45 +315,27 @@
             renderTable();
         }
 
-        function sortTable(colIndex) {
-            if (sortColumn === colIndex) {
-                sortDirection *= -1;
-            } else {
-                sortColumn = colIndex;
-                sortDirection = (colIndex === 2) ? -1 : 1;
+        function sortTable(col) {
+            if (sortColumn === col) sortDirection *= -1;
+            else {
+                sortColumn = col;
+                sortDirection = (col === 2) ? -1 : 1;
             }
 
             filteredRooms.sort((a, b) => {
-                let valA, valB;
-                switch(colIndex) {
-                    case 0: valA = a.username; valB = b.username; break;
-                    case 2: valA = a.viewers; valB = b.viewers; break;
-                    case 3: valA = a.country; valB = b.country; break;
-                    case 4: valA = a.tags; valB = b.tags; break;
-                    case 5: valA = a.source; valB = b.source; break;
-                    default: return 0;
-                }
-                if (typeof valA === 'number' && typeof valB === 'number') {
-                    return (valA - valB) * sortDirection;
-                }
-                return String(valA).localeCompare(String(valB)) * sortDirection;
+                let va = [a.username, 0, a.viewers, a.country, a.tags, a.source][col];
+                let vb = [b.username, 0, b.viewers, b.country, b.tags, b.source][col];
+                if (typeof va === 'number' && typeof vb === 'number') return (va - vb) * sortDirection;
+                return String(va).localeCompare(String(vb)) * sortDirection;
             });
 
             renderTable();
         }
 
-        function filterByTag(tag) {
-            document.querySelectorAll('#seo-tags a').forEach(a => a.classList.remove('active'));
-            event.target.classList.add('active');
-            document.getElementById('search-input').value = tag;
-            applyFilters();
-        }
-
         // Initialize
         window.onload = () => {
             fetchAllRooms();
-            // Auto refresh every 4 minutes
-            setInterval(fetchAllRooms, 4 * 60 * 1000);
+            setInterval(fetchAllRooms, 4 * 60 * 1000); // Auto refresh every 4 minutes
         };
     </script>
 </body>
