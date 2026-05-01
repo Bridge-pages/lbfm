@@ -29,12 +29,18 @@ header { background:#1b1b1b; color:#fff; padding:20px; text-align:center; border
 </div>
 
 <script>
-// reads rooms.json from same origin — no CORS, no proxy
-const PINAY_TAGS = ["pinay", "filipina", "philippines", "pinoy"];
+const WM           = "T2CSW";
+const TOUR         = "z9Aq";   // Chaturbate revshare tour code
+const PINAY_TAGS   = ["pinay", "filipina", "philippines", "pinoy"];
+
+function revshareUrl(username) {
+  return `https://chaturbate.com/in/?tour=${TOUR}&campaign=${WM}&track=default&room=${username}`;
+}
 
 function isPinay(r) {
-  const hay = (r.username + " " + (Array.isArray(r.tags) ? r.tags.join(" ") : r.tags || "")).toLowerCase();
-  return PINAY_TAGS.some(t => hay.includes(t));
+  const tags     = Array.isArray(r.tags) ? r.tags.join(" ") : (r.tags || "");
+  const haystack = (r.username + " " + tags).toLowerCase();
+  return PINAY_TAGS.some(t => haystack.includes(t));
 }
 
 function setStatus(msg, isError = false) {
@@ -50,18 +56,15 @@ function renderPosts(rooms) {
   rooms
     .filter(r => { if (seen.has(r.username)) return false; seen.add(r.username); return true; })
     .forEach(r => {
-      const url = r.room_url
-        ? (r.room_url.startsWith("http") ? r.room_url : "https://chaturbate.com" + r.room_url)
-        : `https://chaturbate.com/${r.username}/`;
       const el = document.createElement("div");
       el.className = "post";
       el.innerHTML = `
-        <a href="${url}" target="_blank" rel="noopener noreferrer">
+        <a href="${revshareUrl(r.username)}" target="_blank" rel="noopener noreferrer">
           <img src="${r.image_url}" alt="${r.username}"
                onerror="this.src='https://placehold.co/600x400/1c1c1c/555?text=Offline'">
         </a>
         <div class="post-content">
-          <h2 class="post-title">${r.username}</h2>
+          <h2 class="post-title"><a href="${revshareUrl(r.username)}" target="_blank" rel="noopener noreferrer" style="color:#ff5252;text-decoration:none">${r.username}</a></h2>
           <div class="post-meta">${r.current_show || "Live"} · 👁 ${r.num_users || 0}</div>
         </div>
       `;
@@ -89,16 +92,12 @@ async function loadRooms() {
     setTimeout(() => setStatus(""), 2000);
     renderPosts(rooms);
   } catch (e) {
-    setStatus(
-      `Could not load rooms.json.<br>
-      <small>Make sure the GitHub Actions workflow has run at least once and committed the file.</small>`,
-      true
-    );
+    setStatus("Could not load rooms.json — check the Actions tab.", true);
   }
 }
 
 loadRooms();
-setInterval(loadRooms, 5 * 60 * 1000); // re-read every 5 min (in sync with the workflow)
+setInterval(loadRooms, 5 * 60 * 1000);
 </script>
 </body>
 </html>
