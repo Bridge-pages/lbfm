@@ -33,16 +33,8 @@ header { background:#1b1b1b; color:#fff; padding:20px; text-align:center; border
 const WM   = "T2CSW";
 const TOUR = "z9Aq";
 
-// Every term that must match tags array only — not username guessing
-const PINAY_TAGS = ["pinay", "filipina", "philippines", "pinoy"];
-
 function revshareUrl(username) {
   return `https://chaturbate.com/in/?tour=${TOUR}&campaign=${WM}&track=default&room=${username}`;
-}
-
-function isPinay(r) {
-  const tags = Array.isArray(r.tags) ? r.tags.map(t => t.toLowerCase()) : [];
-  return PINAY_TAGS.some(t => tags.includes(t));
 }
 
 function setStatus(msg, isError = false) {
@@ -80,10 +72,8 @@ async function loadRooms() {
   try {
     const res = await fetch(`rooms.json?t=${Date.now()}`);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
-
-    // Strict filter — tags array must contain a pinay keyword, no fallback
-    const rooms = (data.results || []).filter(isPinay);
+    const data  = await res.json();
+    const rooms = data.results || [];
 
     if (rooms.length === 0) {
       setStatus("No Pinay or Filipina rooms online right now. Check back soon.");
