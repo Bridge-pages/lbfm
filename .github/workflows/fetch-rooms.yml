@@ -14,12 +14,26 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Fetch Chaturbate API
+      - name: Fetch Chaturbate API (pinay + filipina tags)
         run: |
-          curl -s "https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=T2CSW&client_ip=request_ip" \
-            -o rooms.json \
-            --fail \
-            --max-time 15
+          curl -s "https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=T2CSW&client_ip=request_ip&tag=pinay" \
+            --fail --max-time 15 -o pinay.json
+          curl -s "https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=T2CSW&client_ip=request_ip&tag=filipina" \
+            --fail --max-time 15 -o filipina.json
+
+          node -e "
+            const fs = require('fs');
+            const a = JSON.parse(fs.readFileSync('pinay.json')).results || [];
+            const b = JSON.parse(fs.readFileSync('filipina.json')).results || [];
+            const seen = new Set();
+            const merged = [...a, ...b].filter(r => {
+              if (seen.has(r.username)) return false;
+              seen.add(r.username);
+              return true;
+            });
+            fs.writeFileSync('rooms.json', JSON.stringify({ count: merged.length, results: merged }));
+            console.log('Saved', merged.length, 'rooms');
+          "
 
       - name: Commit if changed
         run: |
