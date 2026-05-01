@@ -4,186 +4,101 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pinay Live Models</title>
-
 <style>
 body { margin:0; font-family: Arial, Helvetica, sans-serif; background:#0f0f0f; color:#e0e0e0; }
 header { background:#1b1b1b; color:#fff; padding:20px; text-align:center; border-bottom:1px solid #333; }
-.container { display:flex; max-width:1100px; margin:20px auto; gap:20px; }
-.main { flex:3; }
-.sidebar { flex:1; }
-.post { background:#1c1c1c; margin-bottom:20px; border-radius:4px; overflow:hidden; box-shadow:0 2px 6px rgba(0,0,0,0.6); }
-.post img { width:100%; }
+.container { max-width:1100px; margin:20px auto; padding:0 10px; }
+.grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap:16px; margin-top:16px; }
+.post { background:#1c1c1c; border-radius:4px; overflow:hidden; box-shadow:0 2px 6px rgba(0,0,0,0.6); }
+.post img { width:100%; display:block; aspect-ratio:3/2; object-fit:cover; }
 .post-content { padding:12px; }
 .post-title { font-size:15px; margin:0 0 5px; color:#ff5252; }
 .post-meta { font-size:12px; color:#aaa; }
-.widget { background:#1c1c1c; padding:15px; margin-bottom:20px; border-radius:4px; box-shadow:0 2px 6px rgba(0,0,0,0.6); }
-.widget h3 { margin:0 0 10px; font-size:13px; border-bottom:1px solid #333; padding-bottom:5px; color:#fff; }
-.loading, .error { text-align:center; padding:20px; }
+.status { text-align:center; padding:20px; }
 .error { color:#ff5252; }
-button { background:#ff5252; color:#fff; border:none; padding:8px 12px; border-radius:3px; cursor:pointer; }
-button:hover { background:#ff1744; }
-@media (max-width:768px){ .container{flex-direction:column;} }
+@media (max-width:600px){ .grid { grid-template-columns: 1fr 1fr; } }
 </style>
 </head>
-
 <body>
 <header>
-  <h1>Pinay & Filipina Live Models</h1>
+  <h1>Pinay &amp; Filipina Live Models</h1>
 </header>
-
 <div class="container">
-  <div class="main">
-    <div id="status" class="loading">Loading...</div>
-    <div id="posts"></div>
-  </div>
-
-  <div class="sidebar">
-    <div class="widget">
-      <h3>Test</h3>
-      <button onclick="testRenderMockData()">Run Test</button>
-    </div>
-  </div>
+  <div id="status" class="status">Loading...</div>
+  <div id="posts" class="grid"></div>
 </div>
 
 <script>
-const CB_API = "https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=T2CSW&client_ip=request_ip";
-const BC_API = "https://bngprm.com/promo.php?c=18144&type=api&api_v=1&limit=50&api_type=json";
-const TAG_URL = "https://chaturbate.com/tag/pinay/female/";
+// reads rooms.json from same origin — no CORS, no proxy
+const PINAY_TAGS = ["pinay", "filipina", "philippines", "pinoy"];
 
-const PROXIES = [
-  url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
-  url => `https://corsproxy.io/?${encodeURIComponent(url)}`,
-  url => `https://cors.isomorphic-git.org/${url}`
-];
-
-async function fetchWithProxies(url, isJSON=true) {
-  for (let proxy of PROXIES) {
-    try {
-      const res = await fetch(proxy(url));
-      if (!res.ok) continue;
-      return isJSON ? await res.json() : await res.text();
-    } catch {}
-  }
-  throw new Error("All proxies failed");
+function isPinay(r) {
+  const hay = (r.username + " " + (Array.isArray(r.tags) ? r.tags.join(" ") : r.tags || "")).toLowerCase();
+  return PINAY_TAGS.some(t => hay.includes(t));
 }
 
-async function fetchTagPage() {
-  try {
-    const html = await fetchWithProxies(TAG_URL, false);
-    const doc = new DOMParser().parseFromString(html, "text/html");
-
-    const cards = doc.querySelectorAll("a[href*='/' ] img");
-
-    const results = [];
-
-    cards.forEach(img => {
-      const link = img.closest("a");
-      if (!link) return;
-
-      const username = (img.alt || "").replace("'s room", "").trim();
-      if (!username) return;
-
-      results.push({
-        username,
-        image: img.src,
-        url: link.href,
-        viewers: "",
-        show: "Pinay"
-      });
-    });
-
-    return results.slice(0, 30);
-  } catch {
-    return [];
-  }
-}
-
-function normalizeChaturbate(data) {
-  return (data.results || []).map(r => ({
-    username: r.username,
-    image: r.image_url,
-    url: r.room_url,
-    viewers: r.num_users,
-    show: r.current_show || "Live"
-  }));
-}
-
-function normalizeBonga(data) {
-  return (data.models || []).map(r => ({
-    username: r.username,
-    image: r.image_url,
-    url: r.url,
-    viewers: r.members_count,
-    show: r.status || "Live"
-  }));
+function setStatus(msg, isError = false) {
+  const el = document.getElementById("status");
+  el.className = "status" + (isError ? " error" : "");
+  el.innerHTML = msg;
 }
 
 function renderPosts(rooms) {
   const container = document.getElementById("posts");
   container.innerHTML = "";
-
-  rooms.forEach(room => {
-    const el = document.createElement("div");
-    el.className = "post";
-
-    el.innerHTML = `
-      <a href="${room.url}" target="_blank">
-        <img src="${room.image}" alt="${room.username}">
-      </a>
-      <div class="post-content">
-        <h2 class="post-title">${room.username}</h2>
-        <div class="post-meta">${room.show} · 👁 ${room.viewers || 0}</div>
-      </div>
-    `;
-
-    container.appendChild(el);
-  });
+  const seen = new Set();
+  rooms
+    .filter(r => { if (seen.has(r.username)) return false; seen.add(r.username); return true; })
+    .forEach(r => {
+      const url = r.room_url
+        ? (r.room_url.startsWith("http") ? r.room_url : "https://chaturbate.com" + r.room_url)
+        : `https://chaturbate.com/${r.username}/`;
+      const el = document.createElement("div");
+      el.className = "post";
+      el.innerHTML = `
+        <a href="${url}" target="_blank" rel="noopener noreferrer">
+          <img src="${r.image_url}" alt="${r.username}"
+               onerror="this.src='https://placehold.co/600x400/1c1c1c/555?text=Offline'">
+        </a>
+        <div class="post-content">
+          <h2 class="post-title">${r.username}</h2>
+          <div class="post-meta">${r.current_show || "Live"} · 👁 ${r.num_users || 0}</div>
+        </div>
+      `;
+      container.appendChild(el);
+    });
 }
 
 async function loadRooms() {
-  const status = document.getElementById("status");
-  status.textContent = "Loading...";
-
+  setStatus("Loading...");
   try {
-    const tagRooms = await fetchTagPage();
-    if (tagRooms.length > 5) {
-      status.textContent = "";
-      renderPosts(tagRooms);
+    const res = await fetch(`rooms.json?t=${Date.now()}`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+
+    const all      = data.results || [];
+    const filtered = all.filter(isPinay);
+    const rooms    = filtered.length > 0 ? filtered : all;
+
+    if (rooms.length === 0) {
+      setStatus("No rooms online right now. Check back soon.");
       return;
     }
 
-    const [cbData, bcData] = await Promise.all([
-      fetchWithProxies(CB_API),
-      fetchWithProxies(BC_API)
-    ]);
-
-    const rooms = [
-      ...normalizeChaturbate(cbData),
-      ...normalizeBonga(bcData)
-    ];
-
-    status.textContent = "Fallback mode";
-    renderPosts(rooms.slice(0, 20));
-
+    setStatus(`${rooms.length} rooms live`);
+    setTimeout(() => setStatus(""), 2000);
+    renderPosts(rooms);
   } catch (e) {
-    status.className = "error";
-    status.textContent = "All sources failed (CORS/proxy blocked).";
+    setStatus(
+      `Could not load rooms.json.<br>
+      <small>Make sure the GitHub Actions workflow has run at least once and committed the file.</small>`,
+      true
+    );
   }
 }
 
-function testRenderMockData() {
-  const mock = [
-    { username:"pinay_star", image:"https://via.placeholder.com/600x400", url:"#", viewers:120, show:"Pinay" },
-    { username:"filipina_hot", image:"https://via.placeholder.com/600x400", url:"#", viewers:80, show:"Pinay" }
-  ];
-
-  document.getElementById("status").textContent = "(Test Mode)";
-  renderPosts(mock);
-}
-
 loadRooms();
-setInterval(loadRooms, 60000);
+setInterval(loadRooms, 5 * 60 * 1000); // re-read every 5 min (in sync with the workflow)
 </script>
-
 </body>
 </html>
