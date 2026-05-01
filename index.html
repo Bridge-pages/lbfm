@@ -12,7 +12,8 @@ header { background:#1b1b1b; color:#fff; padding:20px; text-align:center; border
 .post { background:#1c1c1c; border-radius:4px; overflow:hidden; box-shadow:0 2px 6px rgba(0,0,0,0.6); }
 .post img { width:100%; display:block; aspect-ratio:3/2; object-fit:cover; }
 .post-content { padding:12px; }
-.post-title { font-size:15px; margin:0 0 5px; color:#ff5252; }
+.post-title { font-size:15px; margin:0 0 5px; }
+.post-title a { color:#ff5252; text-decoration:none; }
 .post-meta { font-size:12px; color:#aaa; }
 .status { text-align:center; padding:20px; }
 .error { color:#ff5252; }
@@ -29,18 +30,19 @@ header { background:#1b1b1b; color:#fff; padding:20px; text-align:center; border
 </div>
 
 <script>
-const WM           = "T2CSW";
-const TOUR         = "z9Aq";   // Chaturbate revshare tour code
-const PINAY_TAGS   = ["pinay", "filipina", "philippines", "pinoy"];
+const WM   = "T2CSW";
+const TOUR = "z9Aq";
+
+// Every term that must match tags array only — not username guessing
+const PINAY_TAGS = ["pinay", "filipina", "philippines", "pinoy"];
 
 function revshareUrl(username) {
   return `https://chaturbate.com/in/?tour=${TOUR}&campaign=${WM}&track=default&room=${username}`;
 }
 
 function isPinay(r) {
-  const tags     = Array.isArray(r.tags) ? r.tags.join(" ") : (r.tags || "");
-  const haystack = (r.username + " " + tags).toLowerCase();
-  return PINAY_TAGS.some(t => haystack.includes(t));
+  const tags = Array.isArray(r.tags) ? r.tags.map(t => t.toLowerCase()) : [];
+  return PINAY_TAGS.some(t => tags.includes(t));
 }
 
 function setStatus(msg, isError = false) {
@@ -56,15 +58,16 @@ function renderPosts(rooms) {
   rooms
     .filter(r => { if (seen.has(r.username)) return false; seen.add(r.username); return true; })
     .forEach(r => {
-      const el = document.createElement("div");
+      const link = revshareUrl(r.username);
+      const el   = document.createElement("div");
       el.className = "post";
       el.innerHTML = `
-        <a href="${revshareUrl(r.username)}" target="_blank" rel="noopener noreferrer">
+        <a href="${link}" target="_blank" rel="noopener noreferrer">
           <img src="${r.image_url}" alt="${r.username}"
                onerror="this.src='https://placehold.co/600x400/1c1c1c/555?text=Offline'">
         </a>
         <div class="post-content">
-          <h2 class="post-title"><a href="${revshareUrl(r.username)}" target="_blank" rel="noopener noreferrer" style="color:#ff5252;text-decoration:none">${r.username}</a></h2>
+          <h2 class="post-title"><a href="${link}" target="_blank" rel="noopener noreferrer">${r.username}</a></h2>
           <div class="post-meta">${r.current_show || "Live"} · 👁 ${r.num_users || 0}</div>
         </div>
       `;
@@ -79,12 +82,11 @@ async function loadRooms() {
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
 
-    const all      = data.results || [];
-    const filtered = all.filter(isPinay);
-    const rooms    = filtered.length > 0 ? filtered : all;
+    // Strict filter — tags array must contain a pinay keyword, no fallback
+    const rooms = (data.results || []).filter(isPinay);
 
     if (rooms.length === 0) {
-      setStatus("No rooms online right now. Check back soon.");
+      setStatus("No Pinay or Filipina rooms online right now. Check back soon.");
       return;
     }
 
